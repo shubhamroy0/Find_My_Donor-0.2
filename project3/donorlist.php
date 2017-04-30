@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 session_start();
+include 'php/Requester.php';
 
 $_SESSION['email'] = $_POST['email'];
 $_SESSION['first_name'] = $_POST['firstname'];
@@ -12,29 +13,16 @@ $_SESSION['lat'] = $_POST['lat'];
 $_SESSION['lng'] = $_POST['lng'];
 
 
+$newReq = new Requester($_SESSION['first_name'],$_SESSION['last_name'],$_SESSION['email'],$_SESSION['mobile'],
+						   $_SESSION['age'],$_SESSION['blood_group']);
+$newReq->trackLocation($_SESSION['lat'],$_SESSION['lng']);
+						   
 ?>
 
 
 <html>
 <head>
-<!--
-<script language="JavaScript">
 
-	function myValidation() {
-	  //Validate Donor Selection
-		var checkSel=false;
-		for(i=0;i<donorselectform.donorsCheckId[].length;i++){
-		if(donorselectform.donorsCheckId[i].checked)
-			checkSel=true;
-	}
-	if(!checkSel){
-		alert("Please select at least one donor!");	
-	return false;
-	}
-	}
-
-</script>
--->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>MyDonorList</title>
 <link href="css/webpagestyle.css" rel="stylesheet" type="text/css" media="screen" />
@@ -64,15 +52,9 @@ $_SESSION['lng'] = $_POST['lng'];
 		<form name="donorselectform" action="NotifyDonors.php" method="post">
 			<?php
 				
-				$Requester_blood_group=$_POST["blood_group"];
 				
-				include("db.php");
-				$result = $mysqli->query("SELECT * FROM users where blood_group='$Requester_blood_group'")  or die($mysqli->error());
-				//$num_results = mysql_num_rows($result);
-				/*if ($num_results > 0){}
-				else{
-				header( "location: donornotfounderror.php" );
-				}*/
+				$result = $newReq->searchBlood($newReq->bloodDetails);
+				
 				
 			?>
 			<style>
