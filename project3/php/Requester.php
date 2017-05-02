@@ -12,12 +12,21 @@ include 'Request.php';
 	  var $latitude;
 	  var $longitude;
 	  var $bloodDetails;
-   
-    function trackLocation($lat, $lon){
+	  var $id;
+   /*
+    function setID($rid){
+		$this->id=$rid;
+      }
+	  
+	function getID(){
+		return $this->id;
+      }
+	  */
+	function trackLocation($lat, $lon){
 		$this->latitude=$lat;
 		$this->longitude=$lon;
       }
-	
+	  
 	function calDistance($lat2, $lon2) {
 					
 				  $lat1=$this->getLatitude();

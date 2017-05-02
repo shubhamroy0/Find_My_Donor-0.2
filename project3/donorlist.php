@@ -20,7 +20,7 @@ $newReq->trackLocation($_SESSION['lat'],$_SESSION['lng']);
 
 $reqLocation = new Location($_SESSION['lat'],$_SESSION['lng']);
 
-						   
+$_SESSION['newreq'] = $newReq;  
 ?>
 
 
