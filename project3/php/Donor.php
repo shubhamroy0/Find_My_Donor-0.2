@@ -25,23 +25,23 @@
 		$this->password=$par;
 	}  
 	function getFirstName(){
-        echo $this->firstname; 
+        return $this->firstname; 
       }
 	
 	function getLastName(){
-        echo $this->lastname; 
+        return $this->lastname; 
       }	
 	  
 	function getEmailId(){
-        echo $this->email_id; 
+        return $this->email_id; 
       }
 	  
 	function getMobile(){
-        echo $this->mobile;         
+        return $this->mobile;         
       }
 	  
 	function getAge(){
-        echo $this->age;         
+        return $this->age;         
       }
 	  
 	function getLatitude(){

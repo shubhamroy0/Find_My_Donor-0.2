@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+
 <?php
 
-include 'php/Request.php';
+include 'Request.php';
 
  class Requester {
       var $firstname;
@@ -53,7 +53,6 @@ include 'php/Request.php';
 		}
 		
 		$selId = $selId.')';
-		echo $selId;
 		$result = $mysqli->query("SELECT * 
 		FROM users 
 		WHERE id in $selId")  or die($mysqli->error());
@@ -72,23 +71,23 @@ include 'php/Request.php';
       }
 	  
 	function getFirstName(){
-        echo $this->firstname; 
+        return $this->firstname; 
       }
 	
 	function getLastName(){
-        echo $this->lastname; 
+        return $this->lastname; 
       }	
 	  
 	function getEmailId(){
-        echo $this->email_id; 
+        return $this->email_id; 
       }
 	  
 	function getMobile(){
-        echo $this->mobile;         
+        return $this->mobile;         
       }
 	  
 	function getAge(){
-        echo $this->age;         
+        return $this->age;         
       }
 	  
 	function getLatitude(){
