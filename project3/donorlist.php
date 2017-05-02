@@ -2,6 +2,7 @@
 <?php
 session_start();
 include 'php/Requester.php';
+include 'php/Location.php';
 
 $_SESSION['email'] = $_POST['email'];
 $_SESSION['first_name'] = $_POST['firstname'];
@@ -16,6 +17,9 @@ $_SESSION['lng'] = $_POST['lng'];
 $newReq = new Requester($_SESSION['first_name'],$_SESSION['last_name'],$_SESSION['email'],$_SESSION['mobile'],
 						   $_SESSION['age'],$_SESSION['blood_group']);
 $newReq->trackLocation($_SESSION['lat'],$_SESSION['lng']);
+
+$reqLocation = new Location($_SESSION['lat'],$_SESSION['lng']);
+
 						   
 ?>
 
@@ -71,12 +75,15 @@ $newReq->trackLocation($_SESSION['lat'],$_SESSION['lng']);
 			}
 			.homebutton
 			{
-				padding-left: 15em		
-      		}
+				padding-left: 30em;
+				
+                                border: none;
+ 
+			}
 			</style>
 			
-			<table style="font-size:12 px" class="gridtable">
-			<tr>
+			<table style=" width:100%; " class="gridtable">
+			<tr style="background-color: #4CAF50; color: white; height: 35px;">
 			<th>Donor Name</th>
 			<th>Donor Age</th>
 			<th>Donor Gender</th>

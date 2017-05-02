@@ -28,7 +28,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
         // Send registration confirmation link (reset.php)
         $to      = $email;
-        $subject = 'Password Reset Link ( clevertechie.com )';
+        $subject = 'Password Reset Link ( findmydonor.com )';
         $message_body = '
         Hello '.$first_name.',
 
@@ -36,7 +36,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
         Please click this link to reset your password:
 
-        http://localhost/login-system/reset.php?email='.$email.'&hash='.$hash;  
+        http://findmydonor.comli.com/reset.php?email='.$email.'&hash='.$hash;  
 
         mail($to, $subject, $message_body);
 

@@ -79,8 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 <style>
     #mapPlaceholder {
-	     height: 150px;
-        width: 300px;
+	     height: 180px;
+        width: 350px;
 		color: #000;
 	 }
 	 body {
@@ -88,7 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		 
 	 }
 </style>
-<body>
 
 
 <body>
@@ -97,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		<div id="logo">
 		 
 			<h1><a href="index.php">Findmydonor</a></h1>
-			<p>save life, give blood.</p>
+			<p style="color:red;">save life, give blood.</p>
 		</div>
 	</div>
 	<!-- end #header -->
@@ -119,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			<br />
 			<div id="mapPlaceholder"></div>
 	     </div>	
-	 <div class="form">
+	 <div class="form" style="margin: 20px 0 0 1%;">
       
       <ul class="tab-group">
         <li class="tab"><a href="#signup">Sign Up</a></li>
@@ -249,14 +248,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
               <input type="text" required autocomplete="off" name='mobile' />
             </div>
         </div>
-          
+          <span style="font-size:15px;"> Latitude</span> <span style ="padding-left:16em;font-size:15px;"> Longitude </span>
 		  <div class="top-row">
 			<div class="field-wrap">
-              <input size="20" type="text" required autocomplete="off" id="latbox" name="lat" >
+              <input size="20" type="text" required autocomplete="off" id="latbox" name="lat" readonly>
             </div>
-        
+           
             <div class="field-wrap">
-              <input size="20" type="text" required autocomplete="off" id="lngbox" name="lng" >
+              <input size="20" type="text" required autocomplete="off" id="lngbox" name="lng" readonly>
             </div>		
         </div>
 		  

@@ -26,17 +26,17 @@ $mobile = $_SESSION['mobile'];
 
 				Please click this link to accept the request:
 
-				http://localhost/Design%20Lab%20Project/ConfirmRequest.php?email='.$row['email'].'&hash='.$hash;  
+				http://findmydonor.comli.com/ConfirmRequest.php?email='.$row['email'].'&hash='.$hash;  
 
 				mail( $to, $subject, $message_body );
 				}
 
 				header("location: index.php"); 
 			
-
+/*
 echo "$f_name"."<br>";
 echo "$last_name"."<br>";
 echo "$donblood_group"."<br>";
 echo "$pincode"."<br>";
-
+*/
 ?>

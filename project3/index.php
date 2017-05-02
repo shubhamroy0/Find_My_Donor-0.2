@@ -57,15 +57,13 @@ session_start();
 		function myValidation(){
 		//Validate regular expression
 		var re_age=/^\d{1,3}$/;
-		var re_pincode=/^\d{6}$/;
 		var re_name=/^[A-Za-z]+$/;
-		var re_cntc=/^\d{10,12}$/;
+		var re_cntc=/^\d{10}$/;
 		
 		
 		
 		var vaidate_mobile=document.getElementById("mobile").value;
 		var vaidate_age=document.getElementById("age").value;
-		var vaidate_pincode=document.getElementById("pincode").value;
 		var vaidate_firstname=document.getElementById("firstname").value;
 		var vaidate_lastname=document.getElementById("lastname").value;
 		
@@ -78,12 +76,6 @@ session_start();
 		
 		if(!re_age.test(vaidate_age)){
 				alert("Please enter correct age!");
-				return false;
-			}
-		
-		
-		if(!re_pincode.test(vaidate_pincode)){
-				alert("Please enter correct 6 digit pincode!");
 				return false;
 			}
 		
@@ -172,13 +164,7 @@ session_start();
 				<td>Age:</td>
 				<td><input type="text" required autocomplete="off" name='age' id='age'/></td>
 			</tr>
-			<tr>
-				<div >
-				<b>Your current location</b>
-				Latitude: <input size="20" type="text" id="latbox" name="lat" >Longitude: <input size="20" type="text" id="lngbox" name="lng" >
-				<div id="mapPlaceholder"></div>
-				</div>
-			<tr>
+			
 			<tr>
 				<td>First Name:</td>
 				<td><input type="text" required autocomplete="off" name='firstname' id='firstname'/></td>
@@ -200,6 +186,19 @@ session_start();
 			<tr>
 				<td>Mobile number:</td>
 				<td><input type="text" required autocomplete="off" name='mobile' id='mobile'/></td>
+			</tr>
+			<tr>
+				<td><h4><b><font color="green">Your current location:</font></b></h4>
+			<tr/>
+			<tr>
+				<td>Latitude:</td>
+				<td><input size="20" type="text" id="latbox" name="lat" readonly> </td>
+			</tr>
+		    <tr>
+				<td>Longitude:</td>
+				<td><input size="20" type="text" id="lngbox" name="lng" readonly> </td>
+				<div id="mapPlaceholder"></div>
+				
 			</tr>
 			
 			
