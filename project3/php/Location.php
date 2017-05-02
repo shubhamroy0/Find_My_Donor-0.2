@@ -4,8 +4,8 @@
       
 	  var $latitude;
 	  var $longitude;
-	  var region;
-	  var city;
+	  var $region;
+	  var $city;
 	 	  
 	function __construct( $par1, $par2) {
 	   $this->latitude = $par1;

@@ -83,17 +83,22 @@ $newReq->trackLocation($_SESSION['lat'],$_SESSION['lng']);
 			<th>Donor Address</th>
 			</tr> 
 			<?php
-			
+			$rowcount = mysqli_num_rows($result);
+			if($rowcount>=1){
 			while($row=mysqli_fetch_array($result)){?>
 			
 				<tr>
-				<td><?php echo $row['first_name'] . " ". $row['last_name']?></td>
-				<td><?php echo $row['age']?></td>
-				<td><?php echo $row['gender']?></td>
-				<td><?php echo $row['address']?></td>
+				<td><center><?php echo $row['first_name'] . " ". $row['last_name']?><center></td>
+				<td><center><?php echo $row['age']?><center></td>
+				<td><center><?php echo $row['gender']?><center></td>
+				<td><center><?php echo $row['address']?><center></td>
 				
 				</tr>
 			<?php	
+			}
+			}
+			else{
+				 header( "location: donornotfounderror.php" );
 			}
 			?>
 			
