@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <?php
 session_start();
 include 'php/Requester.php';
@@ -56,9 +56,9 @@ $_SESSION['newreq'] = $newReq;
 		<form name="donorselectform" action="NotifyDonors.php" method="post">
 			<?php
 				
-				
+				//Searching for prospective donors
 				$result = $newReq->searchBlood($newReq->bloodDetails);
-				
+				;				
 				
 			?>
 			<style>

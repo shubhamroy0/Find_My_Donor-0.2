@@ -8,10 +8,11 @@ $last_name = $_SESSION['last_name'];
 $age = $_SESSION['age'];
 $donblood_group = $_SESSION['blood_group'];
 $mobile = $_SESSION['mobile'];
-$requesterid=0;
+$requesterid = 0;
 $newReq = $_SESSION['newreq'];
 
-				echo $newReq->firstname;
+
+			echo $newReq->firstname;
 
 			//Inserting in Requester database
 				include 'db.php';  
@@ -34,14 +35,14 @@ $newReq = $_SESSION['newreq'];
 			
 			//Notifying donors
 			
-				$result = $mysqli->query("SELECT * FROM users WHERE blood_group='$donblood_group'")  or die($mysqli->error());
-			
+				$result = $newReq->searchBlood($newReq->bloodDetails);
 			    while($row=mysqli_fetch_array($result)){
 					
 					
 				$donorfirst_name=$row['first_name'];
 		        $to = $row['email'];
 				$subject = 'Blood request ( FindMyDonor.com )';
+				
 				$message_body = '
 				Hello '.$donorfirst_name.',
 
@@ -49,12 +50,12 @@ $newReq = $_SESSION['newreq'];
 
 				Please click this link to accept the request:
 
-				http://localhost/p4/ConfirmRequest.php?don_id='.$row['id'].'&rq_id='.$requesterid;
+				http://findmydonor.comli.com/ConfirmRequest.php?don_id='.$row['id'].'&rq_id='.$requesterid;
 
 				mail( $to, $subject, $message_body );
 				}
 
 				header("location: index.php"); 
-			
+			}
 
 ?>
