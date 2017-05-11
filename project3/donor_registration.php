@@ -57,6 +57,9 @@ session_start();
 			
 			}
         </script>
+    <script>
+    /*Field Validation for sign-up form in JavaScript*/
+    </script>
 	
   
 </head>
