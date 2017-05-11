@@ -57,9 +57,68 @@ session_start();
 			
 			}
         </script>
-    <script>
-    /*Field Validation for sign-up form in JavaScript*/
-    </script>
+    <script type="text/javascript">
+		function myValidation(){
+        /*Script for donor field validation*/
+		//Validate regular expression
+		var re_age=/^\d{1,3}$/;
+		var re_name=/^[A-Za-z]+$/;
+		var re_cntc=/^\d{10}$/;
+        var re_pin=/^\d{6}$/;
+        var re_addr=/^[A-Za-z0-9'\.\-\s\,]+$/;
+		
+		
+		
+		var vaidate_mobile=document.getElementById('mobile').value;
+		var vaidate_age=document.getElementById('age').value;
+		var vaidate_firstname=document.getElementById('firstname').value;
+		var vaidate_lastname=document.getElementById('lastname').value;
+		var vaidate_address=document.getElementById('address').value;
+		var vaidate_pincode=document.getElementById('pincode').value;
+
+		
+		
+		if(!re_cntc.test(vaidate_mobile)){
+				alert("Please enter 10 digit mobile number!");
+				return false;
+			}
+		
+		
+		if(!re_age.test(vaidate_age)){
+				alert("Please enter correct age!");
+				return false;
+			}
+		
+		
+		if(!re_name.test(vaidate_firstname)){
+				alert("First name should be alphabetic!");
+				return false;
+			}
+		
+		
+		if(!re_name.test(vaidate_lastname)){
+				alert("Last name should be alphabetic!");
+				return false;
+			}
+            
+        if(!re_addr.test(vaidate_address)){
+				alert("Please enter a valid address!");
+				return false;
+			}
+		
+        if(!re_pin.test(vaidate_pincode)){
+				alert("Please enter a 6 digit pincode!");
+				return false;
+			}
+		
+			
+		}
+		
+		
+		
+		
+		</script>
+
 	
   
 </head>
@@ -160,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <div id="signup">   
           <h1>Sign Up for Free</h1>
         
-          <form action="donor_registration.php" method="post" autocomplete="off">
+          <form onsubmit="return myValidation()" action="donor_registration.php" method="post" autocomplete="off">
 		  
 
           
@@ -169,14 +228,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
               <label>
                 First Name<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" name='firstname'/>
+              <input type="text" id='firstname' required autocomplete="off" name='firstname'/>
             </div>
         
             <div class="field-wrap">
               <label>
                 Last Name<span class="req">*</span>
               </label>
-              <input type="text"required autocomplete="off" name='lastname' />
+              <input id='lastname' type="text"required autocomplete="off" name='lastname' />
             </div>
           </div>
 		  
@@ -185,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
               <label>
                 Age<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" name='age' />
+              <input id ='age' type="text" required autocomplete="off" name='age' />
             </div>
 			
 			<div class="field-wrap">
@@ -233,7 +292,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             <label>
               Present Address<span class="req">*</span>
             </label>
-            <input type="text"required autocomplete="off" name='address' />
+            <input type="text" id='address' required autocomplete="off" name='address' />
 		 </div>
 		
 		<div class="top-row">
@@ -241,14 +300,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
               <label>
                 Pincode<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" name='pincode' />
+              <input type="text" id='pincode' required autocomplete="off" name='pincode' />
             </div>
         
             <div class="field-wrap">
               <label>
                 Mobile Number<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" name='mobile' />
+              <input id='mobile' type="text" required autocomplete="off" name='mobile' />
             </div>
         </div>
           <span style="font-size:15px;"> Latitude</span> <span style ="padding-left:16em;font-size:15px;"> Longitude </span>
