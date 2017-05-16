@@ -52,7 +52,7 @@ $result = $mysqli->query("SELECT * FROM users WHERE email='$newDonor->email_id'"
 if ( $result->num_rows > 0 ) {
     
     $_SESSION['message'] = 'User with this email already exists!';
-    header("location:  http://findmydonor.comli.com/error.php");
+    header("location:  http://localhost/project/error.php");
     //header("location:  error.php");
 }
 else { // Email doesn't already exist in a database, proceed...

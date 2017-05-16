@@ -36,7 +36,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' )
 
         Please click this link to reset your password:
 
-        http://findmydonor.comli.com/reset.php?email='.$email.'&hash='.$hash;  
+        http://localhost/project/reset.php?email='.$email.'&hash='.$hash;  
 
         mail($to, $subject, $message_body);
 

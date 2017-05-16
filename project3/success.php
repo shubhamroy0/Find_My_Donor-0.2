@@ -1,12 +1,11 @@
-<?php
-/* Displays all successful messages */
-session_start();
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Success</title>
-  <?php include 'css/css.html'; ?>
+  <?php include 'css/css.html';
+	session_start();
+  ?>
 </head>
 <body>
 <div class="form">
@@ -18,6 +17,7 @@ session_start();
     else:
         header( "location: index.php" );
     endif;
+	session_destroy();
     ?>
     </p>
     <a href="index.php"><button class="button button-block"/>Home</button></a>

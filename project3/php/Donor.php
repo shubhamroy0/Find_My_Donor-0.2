@@ -70,7 +70,7 @@
         $_SESSION['logged_in'] = true; // So we know the user has logged in
         $_SESSION['message'] =
                 
-                 "Confirmation link has been sent to $email, please verify
+                 "Confirmation link has been sent to $this->email_id, please verify
                  your account by clicking on the link in the message!";
 
         // Send registration confirmation link (verify.php)
@@ -83,17 +83,17 @@
 
         Please click this link to activate your account:
 
-        http://findmydonor.comli.com/verify.php?email='.$this->email_id.'&hash='.$hash;  
+        http://localhost/project/verify.php?email='.$this->email_id.'&hash='.$hash;  
 
         mail( $to, $subject, $message_body );
 
-        header("location: http://findmydonor.comli.com/profile.php"); 
+        header("location: http://localhost/project/profile.php"); 
 
     }
 
     else {
         $_SESSION['message'] = 'Registration failed!';
-        header("location: http://findmydonor.comli.com/error.php");
+        header("location: http://localhost/project/error.php");
     }
 		
 	}

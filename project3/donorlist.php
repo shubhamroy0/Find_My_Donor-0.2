@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include 'php/Requester.php';
@@ -30,6 +29,11 @@ $_SESSION['newreq'] = $newReq;
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>MyDonorList</title>
 <link href="css/webpagestyle.css" rel="stylesheet" type="text/css" media="screen" />
+<script>
+function successful() {
+    alert("Success! Email sent to all donors!");
+}
+</script>
 </head>
 <body>
 <div id="wrapper">
@@ -58,7 +62,7 @@ $_SESSION['newreq'] = $newReq;
 				
 				//Searching for prospective donors
 				$result = $newReq->searchBlood($newReq->bloodDetails);
-				;				
+				
 				
 			?>
 			<style>
@@ -112,7 +116,7 @@ $_SESSION['newreq'] = $newReq;
 			</table>
 			<br>
 			<div class="homebutton">
-			<input type="submit" value="Notify" /> 
+			<input type="submit" value="Notify" onclick="successful()" /> 
 			</div>
 		</form> 		
 	</div>

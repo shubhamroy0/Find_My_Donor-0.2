@@ -14,10 +14,11 @@ session_start();
     <p>
     <?php 
     if( isset($_SESSION['message']) AND !empty($_SESSION['message']) ): 
-        echo $_SESSION['message'];    
+        echo $_SESSION['message'];		
     else:
         header( "location: index.php" );
     endif;
+	session_destroy();
     ?>
     </p>     
     <a href="index.php"><button class="button button-block"/>Home</button></a>

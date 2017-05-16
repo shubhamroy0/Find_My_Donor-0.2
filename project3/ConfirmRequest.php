@@ -1,18 +1,13 @@
 <?php 
-/* Verifies registered user email, the link to this page
-   is included in the register.php email message 
-*/
+
 require 'db.php';
 session_start();
 
-// Make sure email and hash variables aren't empty
+// getting requeste and donor details
 if(isset($_GET['don_id']) && !empty($_GET['don_id']) AND isset($_GET['rq_id']) && !empty($_GET['rq_id']))
 {
     $don_id = $mysqli->escape_string($_GET['don_id']); 
     $rq_id = $mysqli->escape_string($_GET['rq_id']); 
-	echo $don_id;
-	echo $rq_id;
-	
 	
     
     // Select requester with matching rq_id
@@ -25,7 +20,8 @@ if(isset($_GET['don_id']) && !empty($_GET['don_id']) AND isset($_GET['rq_id']) &
 	
 	$row_don=mysqli_fetch_array($result_don);
 
-
+	$_SESSION['rq_id']=$rq_id;
+	$_SESSION['don_id']=$don_id;
     
 }
  
@@ -37,11 +33,26 @@ if(isset($_GET['don_id']) && !empty($_GET['don_id']) AND isset($_GET['rq_id']) &
   <meta charset="UTF-8">
   <title>Welcome </title>
   <?php include 'css/css.html'; ?>
+  <script type="text/javascript">
+    
+    function redirect()
+    {
+	alert("Success!");
+    }
+
+</script>
  
-		
 </head>
 
+
 <body>
+<?php
+   if($row_rq['matched']==1){
+	   header( "location: error.php" );
+   }
+
+?>
+
   <div class="form">
 
           <h1>Welcome <?php echo $row_don['first_name'].' '.$row_don['last_name'].'!'; ?></h1>
@@ -103,10 +114,10 @@ if(isset($_GET['don_id']) && !empty($_GET['don_id']) AND isset($_GET['rq_id']) &
 				
 		 
 		 ?> 
+		 <form action="Thankyou.php" method="post" autocomplete="off">
 		 
-		 
-          
-         <button class="button button-block" onclick ="confirmRequest()" name="conf_req"/>Confirm Request</button>
+         <button class="button button-block" onClick="redirect()" id="bttn" name="conf_req"/>Confirm Request</button>
+		 </form>
          
     </div>
     

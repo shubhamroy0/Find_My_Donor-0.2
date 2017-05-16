@@ -25,7 +25,6 @@ use PHPUnit\Framework\TestCase;
 		
 		}
 		
-		
 		function test_Requester_trackLocation(){
 		//Set up
 		$req = new Requester('Jabber','Wock','jwock@gmail.com',9432668169,22,'A +ve');
@@ -39,28 +38,39 @@ use PHPUnit\Framework\TestCase;
 		
 		}
 		
+		function test_Requester_calDistance(){
+		//Set up and Action
+		$req = new Requester('Jabber','Wock','jwock@gmail.com',9432668169,22,'A +ve');
+		$req->trackLocation(22.56,88.36);
+		
+		
+		//Action
+		$distanceKM = $req->calDistance(22.5726460, 88.3638950);
+		
+		//Assert
+		$this->assertLessThan(5, $distanceKM);
+		
+		
+		}
 		
 		function test_Requester_searchBlood(){
 		//Set up and Action
 		$req = new Requester('Jabber','Wock','jwock@gmail.com',9432668169,22,'A -ve');
-		$req->trackLocation(22.56,88.43);
+		$req->trackLocation(22.56,88.36);
 		
-		include ('db.php');
+		
+		//Action
 		$result = $req->searchBlood($req->bloodDetails);
 		$rowcount = mysqli_num_rows($result);
 		
-		//Assert for distance
-		while($row=mysqli_fetch_array($result)){
-			$this->assertEquals('A -ve', $row['blood_group']);
-			$distanceKM = $req->calDistance($row['latitude'], $row['longitude']);
-			$this->assertLessThan(5, $distanceKM);
-		}
 		
 		//Assert
-		$this->assertEquals(2, $rowcount);	
-				
+		$this->assertEquals(1, $rowcount);
+		
+		
 		}
-
+		
+		
 		
 	}
 ?>

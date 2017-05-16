@@ -12,7 +12,7 @@ $requesterid = 0;
 $newReq = $_SESSION['newreq'];
 
 
-			echo $newReq->firstname;
+			//echo $newReq->firstname;
 
 			//Inserting in Requester database
 				include 'db.php';  
@@ -50,12 +50,12 @@ $newReq = $_SESSION['newreq'];
 
 				Please click this link to accept the request:
 
-				http://findmydonor.comli.com/ConfirmRequest.php?don_id='.$row['id'].'&rq_id='.$requesterid;
+				http://localhost/project/ConfirmRequest.php?don_id='.$row['id'].'&rq_id='.$requesterid;
 
 				mail( $to, $subject, $message_body );
 				}
 
 				header("location: index.php"); 
-			}
+			
 
 ?>
