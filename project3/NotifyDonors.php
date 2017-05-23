@@ -1,5 +1,7 @@
 <?php
 include 'php/Requester.php';
+include 'php/HospitalManager.php';
+
 session_start();
 
 $email = $_SESSION['email'];
@@ -10,10 +12,11 @@ $donblood_group = $_SESSION['blood_group'];
 $mobile = $_SESSION['mobile'];
 $requesterid = 0;
 $newReq = $_SESSION['newreq'];
+$hMgr = $_SESSION['hMgr'];
 
 
 			//echo $newReq->firstname;
-
+			//echo $hMgr->hospital_name;
 			//Inserting in Requester database
 				include 'db.php';  
 				$bloodType = $newReq->bloodDetails;
@@ -47,15 +50,23 @@ $newReq = $_SESSION['newreq'];
 				Hello '.$donorfirst_name.',
 
 				'.$f_name.' is in need of blood.
+				
+				Suggested meeting point: 
+				
+				Hospital name: '.$hMgr->hospital_name.'
+				
+				Hospital address: '.$hMgr->hospital_address.'
 
 				Please click this link to accept the request:
+			
 
-				http://localhost/project/ConfirmRequest.php?don_id='.$row['id'].'&rq_id='.$requesterid;
+				http://localhost/ConfirmRequest.php?don_id='.$row['id'].'&rq_id='.$requesterid.'&hosp_id='.$hMgr->getHospitalId();
 
 				mail( $to, $subject, $message_body );
 				}
 
 				header("location: index.php"); 
+				
 			
 
 ?>

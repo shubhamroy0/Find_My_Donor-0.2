@@ -4,10 +4,15 @@ require 'db.php';
 session_start();
 
 // getting requeste and donor details
-if(isset($_GET['don_id']) && !empty($_GET['don_id']) AND isset($_GET['rq_id']) && !empty($_GET['rq_id']))
+
+	if(isset($_GET['don_id']) && !empty($_GET['don_id']) AND isset($_GET['rq_id']) && !empty($_GET['rq_id']))
 {
     $don_id = $mysqli->escape_string($_GET['don_id']); 
     $rq_id = $mysqli->escape_string($_GET['rq_id']); 
+	
+	if(isset($_GET['don_id']) && !empty($_GET['don_id'])){
+		$hosp_id = $mysqli->escape_string($_GET['hosp_id']); 
+	}
 	
     
     // Select requester with matching rq_id
@@ -19,11 +24,20 @@ if(isset($_GET['don_id']) && !empty($_GET['don_id']) AND isset($_GET['rq_id']) &
 	$result_don = $mysqli->query("SELECT * FROM users WHERE id='$don_id'");
 	
 	$row_don=mysqli_fetch_array($result_don);
+	
+	// Select hospital with matching hosp_id
+	$result_hosp = $mysqli->query("SELECT * FROM hospitals WHERE hid='$hosp_id'");
+	
+	$row_hosp=mysqli_fetch_array($result_hosp);
+	
 
 	$_SESSION['rq_id']=$rq_id;
 	$_SESSION['don_id']=$don_id;
+	$_SESSION['hosp_id']=$hosp_id;
     
-}
+}	
+
+
  
 ?>
 
@@ -83,6 +97,22 @@ if(isset($_GET['don_id']) && !empty($_GET['don_id']) AND isset($_GET['rq_id']) &
 		      	<p>Mobile No: &nbsp <?php echo $row_rq['mobile'];?><p>
 			</tr>
 			
+		<p>
+		  The hospital details are:<br>
+		  </p>
+      
+			<tr>
+		       <p>Hospital name: &nbsp <?php echo $row_hosp['hospital_name'];?></p>
+		  </tr>
+		   
+		   <tr>
+		      	<p>Hospital contact: &nbsp <?php echo $row_hosp['hospital_contact_info'];?><p>
+			</tr>
+			
+			 <tr>
+		      	<p>Hospital address: &nbsp <?php echo $row_hosp['hospital_address'];?><p>
+			</tr>
+			 
 			</table>
 		 <?php
 		 //Sending requester details to donor
@@ -100,7 +130,7 @@ if(isset($_GET['don_id']) && !empty($_GET['don_id']) AND isset($_GET['rq_id']) &
 				$message_body = '
 				Hello '.$row_don['first_name'].',
 
-				You have accpeted request of '.$row_rq['first_name'].' '.$row_rq['last_name'].'
+				You have accepted request of '.$row_rq['first_name'].' '.$row_rq['last_name'].'
 
 				The requester details are:
 				

@@ -2,6 +2,7 @@
 session_start();
 include 'php/Requester.php';
 include 'php/Location.php';
+include 'php/HospitalManager.php';
 
 $_SESSION['email'] = $_POST['email'];
 $_SESSION['first_name'] = $_POST['firstname'];
@@ -62,6 +63,9 @@ function successful() {
 				
 				//Searching for prospective donors
 				$result = $newReq->searchBlood($newReq->bloodDetails);
+				//Searching for nearest hospitals
+				$hMgr = new HospitalManager();
+				$hosp_result=$hMgr->searchHospitals($newReq);
 				
 				
 			?>
@@ -115,6 +119,34 @@ function successful() {
 			
 			</table>
 			<br>
+			
+			<table style=" width:100%; " class="gridtable">
+			<tr style="background-color: #4CAF50; color: white; height: 35px;">
+			<th>Hospital Name</th>
+			<th>Hospital Contact Number</th>
+			<th>Hospital Address</th>
+			</tr> 
+			<?php
+			$rowcount1 = mysqli_num_rows($hosp_result);
+			if($rowcount1>=1){
+			while($row1=mysqli_fetch_array($hosp_result)){?>
+			
+				<tr>
+				<td><center><?php echo $row1['hospital_name']?><center></td>
+				<td><center><?php echo $row1['hospital_contact_info']?><center></td>
+				<td><center><?php echo $row1['hospital_address']?><center></td>
+				
+				</tr>
+			<?php	
+			$hMgr->initHospital( $row1['hospital_name'], $row1['hospital_contact_info'], $row1['hospital_address'], $row1['hospital_latitude'], $row1['hospital_longitude'] );
+			
+			}
+			$_SESSION['hMgr'] = $hMgr; 
+			}
+			
+			?>
+			
+			</table>
 			<div class="homebutton">
 			<input type="submit" value="Notify" onclick="successful()" /> 
 			</div>
