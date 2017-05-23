@@ -2,7 +2,17 @@
 /* Main page with two forms: sign up and log in */
 require 'db.php';
 session_start();
+/*For blocking anyone from accessing this page without logging in as admin*/
+if(isset($_GET['admin_email']) && !empty($_GET['admin_email']) AND isset($_GET['admin_password']) && !empty($_GET['admin_password']))
+{
+    $admin_email= $mysqli->escape_string($_GET['admin_email']); 
+    $admin_password = $mysqli->escape_string($_GET['admin_password']); 
+}
+	
+else
+	{header("location:  http://localhost/project/admin_login.php");}
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
