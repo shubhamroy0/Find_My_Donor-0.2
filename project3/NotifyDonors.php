@@ -60,7 +60,7 @@ $hMgr = $_SESSION['hMgr'];
 				Please click this link to accept the request:
 			
 
-				http://localhost/ConfirmRequest.php?don_id='.$row['id'].'&rq_id='.$requesterid.'&hosp_id='.$hMgr->getHospitalId();
+				http://localhost/project/ConfirmRequest.php?don_id='.$row['id'].'&rq_id='.$requesterid.'&hosp_id='.$hMgr->getHospitalId();
 
 				mail( $to, $subject, $message_body );
 				}
