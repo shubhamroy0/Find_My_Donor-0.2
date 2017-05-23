@@ -59,59 +59,27 @@ session_start();
         </script>
     <script type="text/javascript">
 		function myValidation(){
-        /*Script for donor field validation*/
-		//Validate regular expression
-		var re_age=/^\d{1,3}$/;
-		var re_name=/^[A-Za-z]+$/;
-		var re_cntc=/^\d{10}$/;
-        var re_pin=/^\d{6}$/;
-        var re_addr=/^[A-Za-z0-9'\.\-\s\,]+$/;
-		
-		
-		
-		var vaidate_mobile=document.getElementById('mobile').value;
-		var vaidate_age=document.getElementById('age').value;
-		var vaidate_firstname=document.getElementById('firstname').value;
-		var vaidate_lastname=document.getElementById('lastname').value;
-		var vaidate_address=document.getElementById('address').value;
-		var vaidate_pincode=document.getElementById('pincode').value;
+        /*Script for hospital field validation*/
+		var u1=document.getElementById("hospname").value;
+		var u2=document.getElementById("hospcontact").value;
+		var u3=document.getElementById("hospaddress").value;
+		var u4=document.getElementById("latbox").value;
+		var u5=document.getElementById("lngbox").value;
 
-		
-		
-		if(!re_cntc.test(vaidate_mobile)){
-				alert("Please enter 10 digit mobile number!");
-				return false;
-			}
-		
-		
-		if(!re_age.test(vaidate_age)){
-				alert("Please enter correct age!");
-				return false;
-			}
-		
-		
-		if(!re_name.test(vaidate_firstname)){
-				alert("First name should be alphabetic!");
-				return false;
-			}
-		
-		
-		if(!re_name.test(vaidate_lastname)){
-				alert("Last name should be alphabetic!");
-				return false;
-			}
-            
-        if(!re_addr.test(vaidate_address)){
-				alert("Please enter a valid address!");
-				return false;
-			}
-		
-        if(!re_pin.test(vaidate_pincode)){
-				alert("Please enter a 6 digit pincode!");
-				return false;
-			}
-		
-			
+		if(u1==""){
+		alert("Hospital name cannot be blank!")
+		return false;
+		}
+
+		if(u2==""){
+		alert("Hospital contact number cannot be blank!")
+		return false;
+		}
+		if(u3==""){
+		alert("Hospital address cannot be blank!")
+		return false;
+		}
+					
 		}
 		
 		
@@ -122,22 +90,6 @@ session_start();
 	
   
 </head>
-
-<?php 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-{
-    if (isset($_POST['login'])) { //user logging in
-        require 'login.php';
-        
-    }
-    
-    elseif (isset($_POST['register'])) { //user registering
-        
-        require 'register.php';
-        
-    }
-}
-?>
 
 <style>
     #mapPlaceholder {
@@ -165,10 +117,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<div id="menu">
 		<ul>
 			<li class="current_page_item"><a href="index.php">Home</a></li>
-			<li><a href="#">About</a></li>
+			<li><a href="http://23.236.147.19/wiki/index.php?title=Jarvis_buckle_up:Main">About</a></li>
 			<li><a href="donor_registration.php">Donor Registration</a></li>
-			<li><a href="hospital_registration.php">Register Hospitals</a></li>
-			<li><a href="#">Report a Problem</a></li>
+			<li><a href="#">Report Problem</a></li>
 			<li><a href="#">Contact Us</a></li>
 		</ul>
 	</div>
@@ -215,18 +166,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			<tr style="background-color: #4CAF50; color: white; height: 35px;">
 			<th>ID</th>
 			<th>Name</th>
-			<th>Address</th>
 			<th>Contact</th>
-            <th>E-mail</th>
+			<th>Address</th>
 			</tr> 
-			     <tr>
-				<!--<td><center><?php echo $row['first_name'] . " ". $row['last_name']?><center></td>
-				<td><center><?php echo $row['age']?><center></td>
-				<td><center><?php echo $row['gender']?><center></td>
-				<td><center><?php echo $row['address']?><center></td>
-				-->                <!-- Add the hospital details from the SQL File -->
-                </tr>
+			<?php
+			include 'db.php';
+			$sql2 = "SELECT * from hospitals";
+			$hosp_result = $mysqli->query($sql2);
+			$rowcount1 = mysqli_num_rows($hosp_result);
+			if($rowcount1>=1){
+			while($row1=mysqli_fetch_array($hosp_result)){?>
+			    <tr style="color: white;">
+				
+				<td><center><?php echo $row1['hid']?><center></td>
+				<td><center><?php echo $row1['hospital_name']?><center></td>
+				<td><center><?php echo $row1['hospital_contact_info']?><center></td>
+				<td><center><?php echo $row1['hospital_address']?><center></td>
+				
+				</tr>
+			<?php	
+			 }
+			}
+			?>
 			</table>
+			<a href="logout.php"><button class="button button-block"/>Logout</button></a>
             
 
         </div>
@@ -234,65 +197,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         <div id="newhosp">   
           <h1>Enter Hospital Details</h1>
         
-          <!-- <form onsubmit="return myValidation()" action="donor_registration.php" method="post" autocomplete="off">
-		  
+          <!--Enter submission method for registering the hospital details. -->
 
-            Enter submission method for registering the hospital details. -->
-
+		  <form onsubmit="return myValidation()" action="register_hospital.php" method="post" autocomplete="off">
           
-          <div class="top-row">
-            <div class="field-wrap">
-              <label>
-                Hospital ID<span class="req">*</span>
-              </label>
-              <input type="text" id='hospid' required autocomplete="off" name='hospid'/>
-            </div>
-        
+       
             <div class="field-wrap">
               <label>
                 Hospital Name<span class="req">*</span>
               </label>
               <input id='hospname' type="text"required autocomplete="off" name='hospname' />
             </div>
-          </div>
-
-          <div class="field-wrap">
-            <label>
-              Email Address<span class="req">*</span>
-            </label>
-            <input type="email"required autocomplete="off" name='email' />
-          </div>
 		  
 		  <div class="field-wrap">
             <label>
               Hospital Address<span class="req">*</span>
             </label>
-            <input type="text" id='address' required autocomplete="off" name='address' />
+            <input type="text" id='hospaddress' required autocomplete="off" name='hospaddress' />
 		 </div>
 		
-		<div class="top-row">
-			<div class="field-wrap">
-              <label>
-                Pincode<span class="req">*</span>
-              </label>
-              <input type="text" id='pincode' required autocomplete="off" name='pincode' />
-            </div>
-        
             <div class="field-wrap">
               <label>
                 Hospital Contact Number<span class="req">*</span>
               </label>
-              <input id='mobile' type="text" required autocomplete="off" name='mobile' />
+              <input id='hospcontact' type="text" required autocomplete="off" name='hospcontact' />
             </div>
-        </div>
+        
           <span style="font-size:15px;"> Latitude</span> <span style ="padding-left:16em;font-size:15px;"> Longitude </span>
 		  <div class="top-row">
 			<div class="field-wrap">
-              <input size="20" type="text" required autocomplete="off" id="latbox" name="lat" readonly>
+              <input size="20"id='latbox' type="text" required autocomplete="off" id="latbox" name="lat" readonly>
             </div>
            
             <div class="field-wrap">
-              <input size="20" type="text" required autocomplete="off" id="lngbox" name="lng" readonly>
+              <input size="20" id='lngbox' type="text" required autocomplete="off" id="lngbox" name="lng" readonly>
             </div>		
         </div>
 		  

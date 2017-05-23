@@ -50,6 +50,8 @@ session_start();
             });
 			}
         </script> 
+		
+		 
 </head>
 
 
@@ -80,10 +82,10 @@ session_start();
 	<div id="menu">
 		<ul>
 			<li class="current_page_item"><a href="index.php">Home</a></li>
-			<li><a href="#">About</a></li>
+			<li><a href="http://23.236.147.19/wiki/index.php?title=Jarvis_buckle_up:Main">About</a></li>
 			<li><a href="donor_registration.php">Donor Registration</a></li>
 			<li><a href="admin_login.php">Register Hospitals</a></li>
-			<li><a href="#">Report a Problem</a></li>
+			<li><a href="#">Report Problem</a></li>
 			<li><a href="#">Contact Us</a></li>
 		</ul>
 	</div>
@@ -106,43 +108,46 @@ session_start();
          <div id="login">   
           <h1>Login as Admin to Continue!</h1>
           
-          <form action="donor_registration.php" method="post" autocomplete="off">
-          
+          <form action="hospital_registration.php" onsubmit="return myValidation()" method="post" autocomplete="off">
+           
             <div class="field-wrap">
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email" id="email" required autocomplete="off" name="email"/>
+            <input type="email" id="email" required autocomplete="off" name="email">
           </div>
           
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password" id="password" required autocomplete="off" name="password"/>
+            <input type="password" id="password" required autocomplete="off" name="password">
           </div>
           
           <p class="forgot"><a href="forgot.php">Forgot Password?</a></p>
           
-          <button class="button button-block" onclick="window.location.href='/project/hospital_registration.php'">Login</button>
+          <input type="submit" class="button button-block" value="Login">
           <!-- Please enter valid checks here. Defaulted to email: root@gmail.com  password: 123 -->
               
           </form>
 
         </div>
           <script type="text/javascript">
-          function submit()
+          function myValidation()
               {
-                  var em = window.getElementById("email");
-                  var pass = window.getElementById("password");
-                  if((em == 'root@gmail.com') && (pass == '123'))
-                      window.location.href='/project/hospital_registration.php';
-                  else
-                      {
-                          window.alert("Wrong username/password.");
-                          window.location.href='/project/admin_login.php';
-                      }
-              };
+                  var em = document.getElementById("email").value;
+                  var pass = document.getElementById("password").value;
+				  if(em!="root@gmail.com"){
+						alert("Wrong admin id");
+						return false;
+					}
+
+					if(pass!="123"){
+						alert("Wrong admin password");
+						return false;
+                  
+              }
+			  }
           </script>
         
         

@@ -165,10 +165,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	<div id="menu">
 		<ul>
 			<li class="current_page_item"><a href="index.php">Home</a></li>
-			<li><a href="#">About</a></li>
-			<li><a href="donor_registration.php">Donor Registration</a></li>
+			<li><a href="http://23.236.147.19/wiki/index.php?title=Jarvis_buckle_up:Main">About</a></li>
+			<li><a href="donor_registration.php">Donor Registraion</a></li>
 			<li><a href="admin_login.php">Register Hospitals</a></li>
-			<li><a href="#">Report a Problem</a></li>
+			<li><a href="#">Report Problem</a></li>
 			<li><a href="#">Contact Us</a></li>
 		</ul>
 	</div>
