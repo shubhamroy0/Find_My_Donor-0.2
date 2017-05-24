@@ -65,7 +65,7 @@ session_start();
 		var re_name=/^[A-Za-z]+$/;
 		var re_cntc=/^\d{10}$/;
         var re_pin=/^\d{6}$/;
-        var re_addr=/^[A-Za-z0-9'\.\-\s\,]+$/;
+        var re_addr=/^[A-Za-z0-9'\.\/\-\s\,]+$/;
 		
 		
 		
