@@ -2,6 +2,8 @@
 /* Admin login page to register hospitals */
 require 'db.php';
 session_start();
+
+		  
 ?>
 <!DOCTYPE html>
 <html>
@@ -114,17 +116,18 @@ session_start();
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email" id="email" required autocomplete="off" name="email">
+            <input type="email" id="admin_email" required autocomplete="off" name="admin_email">
           </div>
           
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password" id="password" required autocomplete="off" name="password">
+            <input type="password" id="admin_password" required autocomplete="off" name="admin_password">
           </div>
           
           <p class="forgot"><a href="forgot.php">Forgot Password?</a></p>
+		  
           
           <input type="submit" class="button button-block" value="Login">
           <!-- Please enter valid checks here. Defaulted to email: root@gmail.com  password: 123 -->
@@ -135,8 +138,8 @@ session_start();
           <script type="text/javascript">
           function myValidation()
               {
-                  var em = document.getElementById("email").value;
-                  var pass = document.getElementById("password").value;
+                  var em = document.getElementById("admin_email").value;
+                  var pass = document.getElementById("admin_password").value;
 				  if(em!="root@gmail.com"){
 						alert("Wrong admin id");
 						return false;
@@ -147,6 +150,7 @@ session_start();
 						return false;
                   
               }
+			  
 			  }
           </script>
         
